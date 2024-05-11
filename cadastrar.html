@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <title>my-api-web</title>
+    <link rel="icon" type="image/x-icon" href="image/favicon.ico">
+    <script src="js/head.js"></script>
+    <script src='js/jquery-3.7.1.min.js'></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->
+</head>
+
+<body>
+    <header>
+        <script src="js/header.js"></script>
+    </header>
+    <section>
+        <nav>
+            <script src="js/nav.js"></script>
+        </nav>
+        <script src="js/formulario.js"></script>
+    </section>
+    <footer>
+        <script src="js/footer.js"></script>
+    </footer>
+    <script>
+        function salvarDados() {
+            const data = {
+                nome: $('#nome').val(),
+                idade: parseInt($('#idade').val()),
+                altura: parseFloat($('#altura').val())
+            };
+            fetch('http://localhost:8080/v1/cliente/insert', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        alert('ERRO AO CADASTRAR');
+                        throw new Error('Erro ao enviar requisição.');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    alert('Cliente Cadastraso com Sucessoa');
+                    console.log('Resposta da API:', data);
+                })
+                .catch(error => {
+                    alert('ERROR IN REQUEST');
+                    console.error('Erro:', error);
+                });
+        }
+    </script>
+</body>
+
+</html>
