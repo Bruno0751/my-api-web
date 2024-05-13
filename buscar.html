@@ -5,26 +5,9 @@
     <title>my-api-web</title>
     <link rel="icon" type="image/x-icon" href="image/favicon.ico">
     <script src="js/head.js"></script>
-    <script src='js/jquery-3.7.1.min.js'></script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->
+    <script src="js/bucarDadosAPI.js"></script>
     <script>
-        fetch("http://localhost:8080/v1/cliente/find", {
-            method: 'GET',
-        })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Erro ao deletar recurso');
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log(data)
-                montarTable(data, true)
-            })
-            .catch(error => {
-                alert('ERROR IN REQUEST');
-                console.error('Erro:', error);
-            });
         // axios.get("http://localhost:8080/v1/cliente/find")
         //     .then(response => {
         //         montarTable(response.data, true)
@@ -39,7 +22,6 @@
                 let tableHTML = "<table class='tabela'>\n\
                                     <thead>\n\
                                         <tr>\n\
-                                            <th class='tabela'>ID</th>\n\
                                             <th class='tabela'>Nome</th>\n\
                                             <th class='tabela'>Idade</th>\n\
                                             <th class='tabela'>Altura</th>\n\
@@ -52,7 +34,6 @@
                                 <tbody>\n";
                 for (let i = 0; i < data.length; i++) {
                     tableHTML += `<tr>\n\
-                                    <td class='tabela'>${data[i].idCliente}</td>\n\
                                     <td class='tabela'>${data[i].nome}</td>\n\
                                     <td class='tabela'>${data[i].idade}</td>\n\
                                     <td class='tabela'>${data[i].altura}</td>\n\
@@ -65,7 +46,6 @@
                 tableHTML += "</tbody>\n\
                                 <tfoot>\n\
                                     <tr class='tabela'>\n\
-                                        <th class='tabela'>ID</th>\n\
                                         <th class='tabela'>Nome</th>\n\
                                         <th class='tabela'>Idade</th>\n\
                                         <th class='tabela'>Altura</th>\n\
@@ -95,31 +75,8 @@
     <footer>
         <script src="js/footer.js"></script>
     </footer>
-    <script>
-        function deletar(id) {
-            fetch(`http://localhost:8080/v1/cliente/delete/${id}`, {
-                method: 'DELETE',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-            })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Erro ao deletar recurso');
-                    }
-                })
-                .then(data => {
-                    alert('Cliente Deletado com Sucessoa');
-                })
-                .catch(error => {
-                    alert('ERROR IN REQUEST');
-                    console.error('Erro:', error);
-                });
-        }
-        function atualizar(id) {
-            alert("EM BREVE")
-        }
-    </script>
+    <script src="js/deletarDadosAPI.js"></script>
+    <script src="js/atualizarDadosAPI.js"></script>
 </body>
 
 </html>
