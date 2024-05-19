@@ -3,13 +3,13 @@
 
 <head>
     <title>my-api-web</title>
+    <meta charset="UTF-8">
     <link rel="icon" type="image/x-icon" href="image/favicon.ico">
     <script src="js/head.js"></script>
 </head>
 
 <body>
     <header>
-        <!-- <img src=image/loading.gif width=10% height=41px> -->
         <script src="js/header.js"></script>
     </header>
     <section>
@@ -21,44 +21,6 @@
     <footer>
         <script src="js/footer.js"></script>
     </footer>
-    <script>
-        function salvarDados() {
-            const data = {
-                nome: $('#nome').val(),
-                idade: parseInt($('#idade').val()),
-                altura: parseFloat($('#altura').val())
-            };
-            $.blockUI({ message: "<h3 style='font-style: italic;'>Loading...</h3>"});
-            setTimeout(() => {
-                fetch('http://localhost:8080/v1/cliente/insert', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(data),
-                })
-                    .then(response => {
-                        if (!response.ok) {
-                            alert('ERRO AO CADASTRAR');
-                            throw new Error('Erro ao enviar requisição.');
-                        }
-                        return response.json();
-                    })
-                    .then(data => {
-                        toast('Cliente Cadastrado', 'OK', 'success')
-                        console.log('Resposta da API:', data);
-                        $('#nome').val("")
-                        $('#idade').val("")
-                        $('#altura').val("")
-                    })
-                    .catch(error => {
-                        alert('ERROR IN REQUEST');
-                        console.error('Erro:', error);
-                    });
-                    $.unblockUI();
-            }, 2000);
-        }
-    </script>
 </body>
 
 </html>

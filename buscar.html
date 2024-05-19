@@ -3,10 +3,11 @@
 
 <head>
     <title>my-api-web</title>
+    <meta charset="UTF-8">
     <link rel="icon" type="image/x-icon" href="image/favicon.ico">
     <script src="js/head.js"></script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->
-    <script src="js/bucarDadosAPI.js"></script>
+    <script src="js/request/bucarDadosAPI.js"></script>
     <script>
         // axios.get("http://localhost:8080/v1/cliente/find")
         //     .then(response => {
@@ -16,53 +17,10 @@
         //         alert('ERROR IN REQUEST');
         //         console.error('Erro:', error);
         //     });
-        function montarTable(data, bl) {
-            if (bl !== undefined) {
-                let div = window.document.getElementById("table")
-                let tableHTML = "<table class='tabela'>\n\
-                                    <thead>\n\
-                                        <tr>\n\
-                                            <th class='tabela'>Nome</th>\n\
-                                            <th class='tabela'>Idade</th>\n\
-                                            <th class='tabela'>Altura</th>\n\
-                                            <th class='tabela'>Hora</th>\n\
-                                            <th class='tabela'>Data</th>\n\
-                                            <th class='tabela'>DELETAR</th>\n\
-                                            <th class='tabela'>ATUALIZAR</th>\n\
-                                        </tr>\n\
-                                    </thead>\n\
-                                <tbody>\n";
-                for (let i = 0; i < data.length; i++) {
-                    tableHTML += `<tr>\n\
-                                    <td class='tabela'>${data[i].nome}</td>\n\
-                                    <td class='tabela'>${data[i].idade}</td>\n\
-                                    <td class='tabela'>${data[i].altura}</td>\n\
-                                    <td class='tabela'>${data[i].hora}</td>\n\
-                                    <td class='tabela'>${data[i].data}</td>\n\
-                                    <td class='tabela'><button type='button' onClick='deletar("${data[i].idCliente}")'>DELETAR</button></td>\n\
-                                    <td class='tabela'><button type='button' onClick='atualizar("${data[i].idCliente}")'>ATUALIZAR</button></td>\n\
-                                </tr>\n`;
-                }
-                tableHTML += "</tbody>\n\
-                                <tfoot>\n\
-                                    <tr class='tabela'>\n\
-                                        <th class='tabela'>Nome</th>\n\
-                                        <th class='tabela'>Idade</th>\n\
-                                        <th class='tabela'>Altura</th>\n\
-                                        <th class='tabela'>Hora</th>\n\
-                                        <th class='tabela'>Data</th>\n\
-                                        <th class='tabela'>DELETAR</th>\n\
-                                        <th class='tabela'>ATUALIZAR</th>\n\
-                                    </tr>\n\
-                                </tfoot>\n\
-                            </table>";
-                div.innerHTML = tableHTML
-            }
-        }
     </script>
 </head>
 
-<body>
+<body onLoad="buscarDados()">
     <header>
         <script src="js/header.js"></script>
     </header>
@@ -75,8 +33,8 @@
     <footer>
         <script src="js/footer.js"></script>
     </footer>
-    <script src="js/deletarDadosAPI.js"></script>
-    <script src="js/atualizarDadosAPI.js"></script>
+    <script src="js/request/deletarDadosAPI.js"></script>
+    <script src="js/request/atualizarDadosAPI.js"></script>
 </body>
 
 </html>

@@ -1,6 +1,6 @@
 function deletar(id) {
     if (confirm('Tem certeza que Deseja Excluir este registro') == true) {
-        fetch(`http://localhost:8080/v1/cliente/delete/${id}`, {
+        fetch(`http://localhost:9090/v1/cliente/delete/${id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'
